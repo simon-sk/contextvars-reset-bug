@@ -12,5 +12,4 @@ if __name__ == "__main__":
     with httpx.Client() as client:
         for i in range(100):
             r = client.post(url, timeout=None, files=files)
-            print(r.status_code)
             assert r.status_code == 200

@@ -1,4 +1,5 @@
 import contextvars
+import sys
 
 from starlette.applications import Starlette
 from starlette.middleware import Middleware
@@ -17,7 +18,8 @@ class ASGIMiddleware:
             return await self.app(scope, receive, send)
 
         if var.get() is not None:
-            raise ValueError(f"var is already set {var.get}")
+            print(f"var is already set {var.get}, exiting...")
+            sys.exit()
 
         token = var.set("TEST")
 
